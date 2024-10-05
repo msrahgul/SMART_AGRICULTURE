@@ -102,7 +102,7 @@ python Chatbot.py
 
 ### Example Output
 ![alt text](<Screenshot 2024-10-05 102350.png>)
-![alt text](<Screenshot 2024-10-05 100026-1.png>)
+![alt text](<Screenshot 2024-10-05 100026.png>)
 ![alt text](<Screenshot 2024-10-05 100038.png>)
 
 <video controls src="OUTPUT.mp4" title="Title"></video>
