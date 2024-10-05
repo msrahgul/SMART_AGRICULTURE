@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load datasets
-crop_data = pd.read_csv('E:\\HACKATHON\\ChatBot\\ChatBot\\India Agriculture Crop Production1.csv')
+crop_data = pd.read_csv("E:\\HACKATHON\\ChatBot\\ChatBot\\India_Agriculture_Crop_Production_with_Soil_Types.csv")
 rainfall_data = pd.read_csv('E:\\HACKATHON\\ChatBot\\ChatBot\\MONTHLY RAINFALL-District Level Data (1990-2015).csv')
 
 def recommend_crop(district, soil_type):

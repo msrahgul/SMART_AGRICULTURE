@@ -4,7 +4,7 @@ from sklearn.preprocessing import LabelEncoder
 # Load data from the CSV files
 def load_data():
     try:
-        df = pd.read_csv("E:\\HACKATHON\\ChatBot\\ChatBot\\India Agriculture Crop Production1.csv")
+        df = pd.read_csv("E:\\HACKATHON\\ChatBot\\ChatBot\\India_Agriculture_Crop_Production_with_Soil_Types.csv")
     except FileNotFoundError:
         print("Crop production dataset not found.")
         return

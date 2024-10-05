@@ -2,13 +2,12 @@ import pandas as pd
 from soil_classifier import classify_soil
 import tkinter as tk
 from tkinter import filedialog
-import os
 
 def load_crop_data(crop_data_path):
     crop_data = pd.read_csv(crop_data_path)
     return crop_data
 
-def recommend_crop(crop_data, soil_type, district):
+def recommend_crops(crop_data, soil_type, district):
     # Filter data for the specific district and soil type
     filtered_data = crop_data[(crop_data['District'].str.lower() == district.lower()) & 
                                (crop_data['Soil_Type'].str.lower() == soil_type.lower())]
@@ -16,12 +15,14 @@ def recommend_crop(crop_data, soil_type, district):
     if filtered_data.empty:
         return "No crop recommendations available for this district and soil type."
 
-    # Get the crop with the highest yield
-    recommended_crop = filtered_data.loc[filtered_data['Yield'].idxmax()]
-    return recommended_crop['Crop']
+    # Group by Crop and get the maximum yield for each crop
+    best_yield_crops = filtered_data.groupby('Crop', as_index=False)['Yield'].max()
+    best_yield_crops = best_yield_crops.sort_values(by='Yield', ascending=False)
+    
+    return best_yield_crops
 
 def chatbot():
-    crop_data_path = "E:\\HACKATHON\\ChatBot\\ChatBot\\India Agriculture Crop Production1.csv"
+    crop_data_path = "E:\\HACKATHON\\ChatBot\\ChatBot\\India_Agriculture_Crop_Production_with_Soil_Types.csv"
     crop_data = load_crop_data(crop_data_path)
 
     print("Welcome to the Smart Farming Chatbot!")
@@ -48,8 +49,15 @@ def chatbot():
         print("Thank you for using the Smart Farming Chatbot. Goodbye!")
         return
 
-    recommended_crop = recommend_crop(crop_data, soil_type, district)
-    print("Recommended Crop:", recommended_crop)
+    recommended_crops = recommend_crops(crop_data, soil_type, district)
+    
+    # Display the recommended crops
+    if isinstance(recommended_crops, str):
+        print(recommended_crops)
+    else:
+        print("Recommended Crops and Their Best Yields:")
+        for index, row in recommended_crops.iterrows():
+            print(f"Crop: {row['Crop']}, Best Yield: {row['Yield']}")
 
 if __name__ == "__main__":
     chatbot()
