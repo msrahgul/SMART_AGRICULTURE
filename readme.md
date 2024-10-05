@@ -101,6 +101,7 @@ python Chatbot.py
    - Fertilizer consumption for Kharif and Rabi seasons.
 
 ### Example Output
+![alt text](<Screenshot 2024-10-05 102350.png>)
 ![alt text](<Screenshot 2024-10-05 100026-1.png>)
 ![alt text](<Screenshot 2024-10-05 100038.png>)
 
